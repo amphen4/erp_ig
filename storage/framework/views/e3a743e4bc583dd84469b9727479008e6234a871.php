@@ -277,10 +277,10 @@ $('.flexdatalistproductos').on('select:flexdatalist', function(event, set, optio
         var wow = '<tr class="even pointer"><td ><p id="id">'
         +set.id+'</p> </td><td ><p id="producto">'
         +set.nombre+'</p> </td><td ><p><i class="success fa fa-usd"></i><label id="neto">'
-        +set.precio_neto.toLocaleString()+'</label> </p></td><td ><p><i class="success fa fa-usd"></i><label id="iva">'
-        +set.precio_iva.toLocaleString()+'</label> </p></td><td ><p><i class="success fa fa-usd"></i><label id="venta">'
-        +set.precio_venta.toLocaleString()+'</label> </p></td><td ><input style="width: 60px;" id="cantidad" class="form-control input-sm" value="1" min="1" type="number" onchange="actualizarTotalFila(this);actualizarTotal();"></td><td><input type="text" id="medidas" style="width: 100px;" data-inputmask="'+"'mask'"+": '****-****-****-****-****-***'"+'"></td><td><input type="number" style="width: 60px;" id="descuentoFila"  max="100" min="0" onchange="actualizarTotalFila(this);actualizarTotal();" value="0"></td><td ><p><i class="success fa fa-usd"></i><label id="venta2">'
-        +set.precio_venta.toLocaleString()+'</label> </p></td><td><button class="btn btn-danger btn-xs" onclick="eliminarFila(this)">Eliminar</button></td></tr>';
+        +set.precio_neto.toLocaleString('de-DE')+'</label> </p></td><td ><p><i class="success fa fa-usd"></i><label id="iva">'
+        +set.precio_iva.toLocaleString('de-DE')+'</label> </p></td><td ><p><i class="success fa fa-usd"></i><label id="venta">'
+        +set.precio_venta.toLocaleString('de-DE')+'</label> </p></td><td ><input style="width: 60px;" id="cantidad" class="form-control input-sm" value="1" min="1" type="number" onchange="actualizarTotalFila(this);actualizarTotal();"></td><td><input type="text" id="medidas" style="width: 100px;" data-inputmask="'+"'mask'"+": '****-****-****-****-****-***'"+'"></td><td><input type="number" style="width: 60px;" id="descuentoFila"  max="100" min="0" onchange="actualizarTotalFila(this);actualizarTotal();" value="0"></td><td ><p><i class="success fa fa-usd"></i><label id="venta2">'
+        +set.precio_venta.toLocaleString('de-DE')+'</label> </p></td><td><button class="btn btn-danger btn-xs" onclick="eliminarFila(this)">Eliminar</button></td></tr>';
         $('#body').append(wow);
         actualizarTotal();
       });
@@ -317,7 +317,7 @@ function actualizarTotal() {
       }
       
     }
-    $('#total').html(total.toLocaleString());
+    $('#total').html(total.toLocaleString('de-DE'));
     
 }
 function actualizarTotalFila(e){
@@ -326,7 +326,7 @@ function actualizarTotalFila(e){
   if($(e.parentElement.parentElement).find('#descuentoFila').val()){
     total*= 1-(parseFloat($(e.parentElement.parentElement).find('#descuentoFila').val())/100);
   }
-  $(e.parentElement.parentElement).find('#venta2').html(total.toLocaleString());
+  $(e.parentElement.parentElement).find('#venta2').html(total.toLocaleString('de-DE'));
 }
 </script>
 <script>

@@ -24,6 +24,14 @@ class OtFPDF extends FPDF
 	}
 	public function imprimirReporte($ot)
 	{
+		$nombre_contacto='Cliente Eliminado';
+		$razon_social='-';
+		$rut_contacto='-';	
+		$rut_empresa='-';
+		$giro='-';
+		$direccion='-';
+		$fono='-';
+		if($ot->cotizacion->cliente){
 		$nombre_contacto=$ot->cotizacion->cliente->nombre;
 		$razon_social=$ot->cotizacion->cliente->razon_social;
 		$rut_contacto=$ot->cotizacion->cliente->rut;	
@@ -31,6 +39,7 @@ class OtFPDF extends FPDF
 		$giro=$ot->cotizacion->cliente->giro;
 		$direccion=$ot->cotizacion->cliente->direccion.', '.$ot->cotizacion->cliente->comuna.', '.$ot->cotizacion->cliente->region;
 		$fono=$ot->cotizacion->cliente->fono1;
+		}
 		$fecha=Carbon::now()->format('d-m-Y');
 
 		$this->AliasNbPages();
@@ -172,6 +181,14 @@ class OtFPDF extends FPDF
 	}
 	public function generarReporte($ot)
 	{
+		$nombre_contacto='Cliente Eliminado';
+		$razon_social='-';
+		$rut_contacto='-';	
+		$rut_empresa='-';
+		$giro='-';
+		$direccion='-';
+		$fono='-';
+		if($ot->cotizacion->cliente){
 		$nombre_contacto=$ot->cotizacion->cliente->nombre;
 		$razon_social=$ot->cotizacion->cliente->razon_social;
 		$rut_contacto=$ot->cotizacion->cliente->rut;	
@@ -179,6 +196,7 @@ class OtFPDF extends FPDF
 		$giro=$ot->cotizacion->cliente->giro;
 		$direccion=$ot->cotizacion->cliente->direccion.', '.$ot->cotizacion->cliente->comuna.', '.$ot->cotizacion->cliente->region;
 		$fono=$ot->cotizacion->cliente->fono1;
+		}
 		$fecha=Carbon::now()->format('d-m-Y');
 
 		$this->AliasNbPages();
