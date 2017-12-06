@@ -59,7 +59,7 @@
                           <th>Marca</th>
                           <th>Categoria</th>
                           <th>Inventario</th>
-                          <th>Codigo Interno</th>
+                          <th>Codigo Barras</th>
                           <th>Stock</th>
                           <th>Costo Neto</th>
                           <th>Monto IVA</th>
@@ -72,10 +72,10 @@
                         <tr>
                           <td><a href="{{ url('/adminuser/productos').'/'.$fila->id.'/edit' }}"  class="btn btn-warning btn-xs ">Editar</a><button   class="btn btn-danger btn-xs " value="{{$fila->id}}" >Eliminar</button></td>
                           <td>{{ $fila->id }}</td>
-                          <td>{{ $fila->nombre }}</td>
-                          <td>{{ $fila->marca->nombre }}</td>
-                          <td>{{ $fila->categoria->nombre }}</td>
-                          <td>{{ $fila->inventario->nombre }}</td>
+                          <td>{{ str_limit($fila->nombre,20) }}</td>
+                          <td>{{ str_limit($fila->marca->nombre,20) }}</td>
+                          <td>{{ str_limit($fila->categoria->nombre,20) }}</td>
+                          <td>{{ str_limit($fila->inventario->nombre,20) }}</td>
                           <td>{{ $fila->codigo }}</td>
                           <td>{{ $fila->stock }}</td>
                           <td><strong>{{ '$'.number_format($fila->precio_neto,0,",",".") }}</strong></td>

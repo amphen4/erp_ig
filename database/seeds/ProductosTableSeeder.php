@@ -11,6 +11,7 @@ class ProductosTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
         DB::table('productos')->insert([
             'id' => 1,
             'nombre' => 'Notebook Dell XPS 15',
@@ -47,5 +48,6 @@ class ProductosTableSeeder extends Seeder
             'inventario_id' => 1,
             'marca_id' => 1,
         ]);
+        */
     }
 }

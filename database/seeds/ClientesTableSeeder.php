@@ -11,6 +11,7 @@ class ClientesTableSeeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('clientes')->insert([
             'nombre' => 'Alejandro Guillier',
             'email' => 'a@q.p',
@@ -35,5 +36,6 @@ class ClientesTableSeeder extends Seeder
             'fono1' => '+569 77881492',
             'giro' => 'PARTICULAR'
         ]);
+        
     }
 }

@@ -58,7 +58,7 @@
                           <th>Marca</th>
                           <th>Categoria</th>
                           <th>Inventario</th>
-                          <th>Codigo Interno</th>
+                          <th>Codigo Barras</th>
                           <th>Stock</th>
                           <th>Costo Neto</th>
                           <th>Monto IVA</th>
@@ -71,10 +71,10 @@
                         <tr>
                           <td><a href="<?php echo e(url('/adminuser/productos').'/'.$fila->id.'/edit'); ?>"  class="btn btn-warning btn-xs ">Editar</a><button   class="btn btn-danger btn-xs " value="<?php echo e($fila->id); ?>" >Eliminar</button></td>
                           <td><?php echo e($fila->id); ?></td>
-                          <td><?php echo e($fila->nombre); ?></td>
-                          <td><?php echo e($fila->marca->nombre); ?></td>
-                          <td><?php echo e($fila->categoria->nombre); ?></td>
-                          <td><?php echo e($fila->inventario->nombre); ?></td>
+                          <td><?php echo e(str_limit($fila->nombre,20)); ?></td>
+                          <td><?php echo e(str_limit($fila->marca->nombre,20)); ?></td>
+                          <td><?php echo e(str_limit($fila->categoria->nombre,20)); ?></td>
+                          <td><?php echo e(str_limit($fila->inventario->nombre,20)); ?></td>
                           <td><?php echo e($fila->codigo); ?></td>
                           <td><?php echo e($fila->stock); ?></td>
                           <td><strong><?php echo e('$'.number_format($fila->precio_neto,0,",",".")); ?></strong></td>

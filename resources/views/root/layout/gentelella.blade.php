@@ -61,7 +61,8 @@
                 <h3>Menú</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{ url('/root/home') }}"><i class="fa fa-home"></i> Inicio </a></li>
-                  <li><a href="{{ url('/root/csv') }}"><i class="fa fa-home"></i> Importar CSV Clientes </a></li>
+                  <li><a href="{{ url('/root/csv') }}"><i class="fa fa-file-excel-o"></i> Importar CSV Clientes </a></li>
+                  <li><a href="{{ url('/root/csvProductos') }}"><i class="fa fa-file-excel-o"></i> Importar CSV Productos </a></li>
                   <li><a><i class="fa fa-edit"></i> Modulo 1 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Submodulo 1</a></li>

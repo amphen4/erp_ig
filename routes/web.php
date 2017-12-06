@@ -174,4 +174,7 @@ Route::group(['prefix' => 'root'], function () {
 
   Route::get('/csv','RootCsvController@index');
   Route::post('/csv','RootCsvController@store');
+
+  Route::get('/csvProductos','RootCsvProductosController@index');
+  Route::post('/csvProductos','RootCsvProductosController@store');
 });
