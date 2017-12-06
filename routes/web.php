@@ -154,6 +154,9 @@ Route::group(['prefix' => 'adminuser'], function () {
   Route::get('/productos.json','AdminAjaxController@enviarProductos');
 
   Route::resource('/cotizaciones','AdminCotizacionesController');
+  Route::resource('/reportes','AdminReportesController');
+
+  Route::get('/descargarReporte/{filename}','AdminAjaxController@descargarReporte');
 });
 
 Route::group(['prefix' => 'root'], function () {

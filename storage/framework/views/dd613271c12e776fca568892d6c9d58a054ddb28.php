@@ -78,6 +78,7 @@
                   </li>
                   <li><a href="<?php echo e(url('adminuser/ots')); ?>"><i class="fa fa-inbox"></i> Ordenes de Trabajo </a></li>
                   <li><a href="<?php echo e(url('adminuser/clientes')); ?>"><i class="fa fa-users"></i> Clientes </a></li>
+                  <li><a href="<?php echo e(url('adminuser/reportes')); ?>"><i class="fa fa-file-pdf-o"></i> Reportes </a></li>
                 </ul>
               </div>
               <div class="menu_section">

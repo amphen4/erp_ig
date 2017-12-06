@@ -67,15 +67,8 @@
               <div class="menu_section">
                 <h3>Area Ventas</h3>
                 <ul class="nav side-menu">
-                  
-                    
-                      <li><a href="{{ url('/ventasuser/cotizaciones/create') }}"><i class="fa fa-plus"></i> Nueva Cotizacion </a></li>
-                      <li><a href="{{ url('/ventasuser/cotizaciones') }}"><i class="fa fa-list"></i> Ver <strong>Cotizaciones</strong></a></li>
-                    
-                  
-                  <li><a href="#"><i class="fa fa-sort-alpha-desc"></i>En desarrollo</a></li>
-                    
-                  
+                  <li><a href="{{ url('/ventasuser/cotizaciones/create') }}"><i class="fa fa-plus"></i> Nueva Cotizacion </a></li>
+                  <li><a href="{{ url('/ventasuser/cotizaciones') }}"><i class="fa fa-list"></i> Ver <strong>Cotizaciones</strong></a></li>
                 </ul>
               </div>
 

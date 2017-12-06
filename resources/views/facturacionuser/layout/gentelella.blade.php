@@ -64,17 +64,7 @@
                   <li><a href="{{ url('facturacionuser/facturas') }}"><i class="fa fa-calculator"></i> Facturas </a></li>
                 </ul>
               </div>
-              <div class="menu_section">
-                <h3>Otra Seccion Menú</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Otro módulo <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#">Submodulo 1</a></li>
-                      <li><a href="#">Submodulo 2</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+              
 
             </div>
             <!-- /sidebar menu -->

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reporte extends Model
 {
     protected $fillable = ['fecha','comentario','filename','id'];
+    protected $dates = ['fecha'];
 
     // Relaciones Muchos a uno
     public function ot()

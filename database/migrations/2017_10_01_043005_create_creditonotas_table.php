@@ -17,7 +17,7 @@ class CreateCreditonotasTable extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->text('texto');
-            $table->string('filename')->unique();
+            $table->string('filename')->nullable();
             // Claves Foraneas
             $table->integer('ot_id')->unsigned()->unique()->nullable();
             $table->foreign('ot_id')->references('id')->on('ots')->onDelete('set null');

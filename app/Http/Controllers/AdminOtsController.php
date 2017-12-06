@@ -82,6 +82,10 @@ class AdminOtsController extends Controller
             case 'PENDIENTE':
                 $cotizacion = $ot->cotizacion;
                 return view('adminuser.cotizaciones.editarCotizacion',['cotizacion' => $cotizacion]);
+            case 'EN PROCESO':
+                return view('adminuser.ots.enProceso',['ot' => $ot]);
+            case 'ACTIVA':
+                return view('adminuser.ots.activa',['ot' => $ot]);
             default:
                 return abort(404);
         }
@@ -96,7 +100,7 @@ class AdminOtsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //dd($request);
         $this->validate($request, ['fecha' => 'required|date',
                                    'nro' => 'required|numeric',
                                    'comentario' => 'required|string',
@@ -132,6 +136,74 @@ class AdminOtsController extends Controller
                 $ot->nro = $request->nro;
                 $ot->fecha = $request->fecha;
                 $ot->adminuser()->associate(Auth::user());
+                $ot->save();
+                $reporte = new Reporte();
+                $reporte->comentario = $request->comentario;
+                $reporte->ot()->associate($ot);
+                $reporte->otestado()->associate($otestado);
+                $reporte->fecha = Carbon::now()->format('Y-m-d');
+                $oao = new OtFPDF();
+                $reporte->filename = $oao->generarReporte($ot);
+                $reporte->save();
+
+                return redirect(url('adminuser/ots'))->with('mensaje','Orden de Trabajo modificada exitosamente!');
+                break;
+            case 'ACTIVA':
+                $ot = Ot::findOrFail($id);
+                $otestado = Otestado::where('nombre','ACTIVA')->first();
+                $ot->otestado()->associate($otestado);
+                $ot->comentario = $request->comentario;
+                $ot->fecha_entrega = $request->fecha_entrega;
+                $ot->fecha = Carbon::now()->format('Y-m-d');
+                //$ot->cotizacion->produccionuser()->associate(Auth::user());
+                $ot->cotizacion->save();
+                $ot->save();
+                $reporte = new Reporte();
+                $reporte->comentario = $request->comentario;
+                $reporte->ot()->associate($ot);
+                $reporte->otestado()->associate($otestado);
+                $reporte->fecha = Carbon::now()->format('Y-m-d');
+                $oao = new OtFPDF();
+                $reporte->filename = $oao->generarReporte($ot);
+                $reporte->save();
+
+                return redirect(url('adminuser/ots'))->with('mensaje','Orden de Trabajo modificada exitosamente!');
+                break;
+            case 'POR FACTURAR':
+                $this->validate($request, ['comentario' => 'required',
+                                            'medio_pago' => 'required',
+                                  ]);
+                $ot = Ot::findOrFail($id);
+                $otestado = Otestado::where('nombre','POR FACTURAR')->first();
+                $ot->otestado()->associate($otestado);
+                $ot->comentario = $request->comentario;
+                $ot->medio_pago = $request->medio_pago;
+                $ot->fecha = Carbon::now()->format('Y-m-d');
+                
+                $ot->cotizacion->save();
+                $ot->save();
+                $reporte = new Reporte();
+                $reporte->comentario = $request->comentario;
+                $reporte->ot()->associate($ot);
+                $reporte->otestado()->associate($otestado);
+                $reporte->fecha = Carbon::now()->format('Y-m-d');
+                $oao = new OtFPDF();
+                $reporte->filename = $oao->generarReporte($ot);
+                $reporte->save();
+
+                return redirect(url('adminuser/ots'))->with('mensaje','Orden de Trabajo modificada exitosamente!');
+                break;
+            case 'PERDIDA':
+                $this->validate($request, ['comentario' => 'required',
+                                      ]);
+                $ot = Ot::findOrFail($id);
+                $otestado = Otestado::where('nombre','PERDIDA')->first();
+                $ot->otestado()->associate($otestado);
+                $ot->comentario = $request->comentario;
+                //$ot->medio_pago = $request->medio_pago;
+                $ot->fecha = Carbon::now()->format('Y-m-d');
+                
+                $ot->cotizacion->save();
                 $ot->save();
                 $reporte = new Reporte();
                 $reporte->comentario = $request->comentario;

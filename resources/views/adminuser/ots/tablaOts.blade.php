@@ -154,7 +154,7 @@
         for(var i=0; i<data['ots'].length; i++){
           console.log(data['ots'][i].id);
 
-          wea.row.add(['<a href="'+"{{url('adminuser/ots')}}"+'/'+data['ots'][i].id+'/edit" class="btn btn-warning btn-xs">Modificar</a>',
+          wea.row.add(['<button value="'+data['ots'][i].id+'"  class="btn btn-danger btn-xs btnEliminar" onclick="funcionEliminar(this);">Eliminar</button><a href="'+"{{url('adminuser/ots')}}"+'/'+data['ots'][i].id+'/edit" class="btn btn-warning btn-xs">Modificar</a>',
                       data['ots'][i].id,
                       data['ots'][i].fecha,
                       data['otestado'][i],
@@ -211,5 +211,24 @@
     }
     
   });  
+  function funcionEliminar(e){
+    
+    if(confirm('Esta seguro?. De todos modos quedará registro de todos sus estados y repectivos detalles en Seccion Reportes')){
+      $.ajax({
+        type: "POST",
+        url: "{{url('adminuser/ots')}}"+'/'+$(e).val(),
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: '_method=DELETE',
+        success: function(json) {
+          document.location.reload();
+        },
+        error: function(xhr, status, error) {
+          alert('Error en el servidor, porfavor revise los datos que se envian.');
+          console.log(xhr.responseText);
+        }
+      });
+    }
+    
+  }
 </script>
 @endsection

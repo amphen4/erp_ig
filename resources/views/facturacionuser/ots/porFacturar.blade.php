@@ -37,8 +37,10 @@
                 </li>
                 <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Detalles Cotizacion</a>
                 </li>
+                @if($ot->cotizacion->cliente)
                 <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Detalles Cliente</a>
                 </li>
+                @endif
               </ul>
               
               <div id="myTabContent" class="tab-content">
@@ -59,14 +61,14 @@
                       <label class="control-label col-md-3" >Cliente a facturar: 
                       </label>
                       <div class="col-md-7">
-                        <input value="{{$ot->cotizacion->cliente->nombre}}" type="text"  name="cliente"  class="form-control col-md-7 col-xs-12">
+                        <input value="@if($ot->cotizacion->cliente){{$ot->cotizacion->cliente->nombre}}@else Cliente Eliminado @endif" type="text"  name="cliente"  class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3" >RUT a facturar: 
                       </label>
                       <div class="col-md-7">
-                        <input value="@if($ot->cotizacion->cliente->empresa){{$ot->cotizacion->cliente->empresa}}@else{{$ot->cotizacion->cliente->rut}}@endif" type="text" name="rut"  class="form-control col-md-7 col-xs-12">
+                        <input value="@if($ot->cotizacion->cliente) @if($ot->cotizacion->cliente->empresa){{$ot->cotizacion->cliente->empresa}}@else{{$ot->cotizacion->cliente->rut}}@endif @else Cliente Eliminado @endif" type="text" name="rut"  class="form-control col-md-7 col-xs-12">
                       </div>
                     </div>
                     <div class="form-group">
@@ -268,6 +270,7 @@
                       </div>
                     </div>
                 </div>
+                @if($ot->cotizacion->cliente)
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                   <div class="col-md-6 col-sm-6 col-xs-12 profile_details">
                     <div class="well profile_view">
@@ -305,6 +308,7 @@
                     </div>
                   </div>
                 </div>
+                @endif
               </div>
               
             </div>

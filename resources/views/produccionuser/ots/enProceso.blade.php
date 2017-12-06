@@ -35,8 +35,10 @@
                 </li>
                 <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Detalles Cotizacion</a>
                 </li>
+                @if($ot->cotizacion->cliente)
                 <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Detalles Cliente</a>
                 </li>
+                @endif
               </ul>
               
               <div id="myTabContent" class="tab-content">
@@ -188,6 +190,7 @@
                       </div>
                     </div>
                 </div>
+                @if($ot->cotizacion->cliente)
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                   <div class="col-md-6 col-sm-6 col-xs-12 profile_details">
                     <div class="well profile_view">
@@ -225,6 +228,7 @@
                     </div>
                   </div>
                 </div>
+                @endif
               </div>
               
             </div>

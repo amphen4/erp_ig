@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Cotizacion;
 use App\Adminuser;
 use App\Producto;
+use Illuminate\Support\Facades\Storage;
 
 class AdminAjaxController extends Controller
 {
@@ -104,5 +105,8 @@ class AdminAjaxController extends Controller
     public function enviarProductos()
     {
         return Producto::all()->toJson();
+    }
+    public function descargarReporte($filename){
+        return response()->download(Storage::disk('reportes')->getDriver()->getAdapter()->applyPathPrefix($filename));
     }
 }
