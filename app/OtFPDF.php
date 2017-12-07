@@ -122,7 +122,7 @@ class OtFPDF extends FPDF
 		foreach($ot->cotizacion->producto as $producto){
 			$this->Cell(15,6,$producto->id,1,0,'C');
 			$this->Cell(13,6,$producto->pivot->cantidad,1,0,'C');
-			if(strlen($producto->nombre)>60) $this->Cell(74,6,str_limit($producto->nombre, 30),1,0,'C');
+			if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
 			else $this->Cell(74,6,$producto->nombre,1,0,'C');
 			
 			$this->Cell(35,6,'$ '.number_format($producto->precio_venta,0,",","."),1,0,'C');
@@ -280,7 +280,7 @@ class OtFPDF extends FPDF
 		foreach($ot->cotizacion->producto as $producto){
 			$this->Cell(15,6,$producto->id,1,0,'C');
 			$this->Cell(13,6,$producto->pivot->cantidad,1,0,'C');
-			if(strlen($producto->nombre)>60) $this->Cell(74,6,str_limit($producto->nombre, 30),1,0,'C');
+			if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
 			else $this->Cell(74,6,$producto->nombre,1,0,'C');
 			
 			$this->Cell(35,6,'$ '.number_format($producto->precio_venta,0,",","."),1,0,'C');

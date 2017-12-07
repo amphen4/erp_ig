@@ -211,11 +211,11 @@
     
   });  
   function funcionEliminar(e){
-    alert($(e).val());
+    
     if(confirm('Esta seguro?. De todos modos quedará registro de todos sus estados y repectivos detalles en Seccion Reportes')){
       $.ajax({
         type: "POST",
-        url: "<?php echo e(url('adminuser/ots')); ?>"+'/'+$(this).val(),
+        url: "<?php echo e(url('adminuser/ots')); ?>"+'/'+$(e).val(),
         headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: '_method=DELETE',
         success: function(json) {

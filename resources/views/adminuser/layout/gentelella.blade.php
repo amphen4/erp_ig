@@ -81,7 +81,7 @@
                   <li><a href="{{ url('adminuser/reportes') }}"><i class="fa fa-file-pdf-o"></i> Reportes </a></li>
                 </ul>
               </div>
-              <div class="menu_section">
+              <div class="menu_section menu_fixed">
                 <h3>Area Produccion</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{ url('/adminuser/productos') }}"><i class="fa fa-cubes"></i> Productos </a></li>
@@ -92,7 +92,18 @@
                   
                 </ul>
               </div>
-
+              <div class="menu_section menu_fixed">
+                <h3>Estadisticas</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bar-chart"></i> Ventas <span class="fa fa-chevron-down"></span></a>
+                    
+                      <ul class="nav child_menu">
+                        <li><a href="{{ url('/adminuser/estadisticas/ventas_por_vendedor') }}"></i> Ventas por Vendedor </a></li>
+                      
+                      </ul>
+                  </li>
+                </ul>
+              </div>
             </div>
             <!-- /sidebar menu -->
 

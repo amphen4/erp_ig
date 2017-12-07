@@ -1,6 +1,7 @@
 @extends('adminuser.layout.gentelella')
 @section('title','Reportes | Administrador')
 @section('contenido')
+<div class="row">
 			<div class="col-md-6">
               <div class="x_panel">
                 <div class="x_title">
@@ -37,6 +38,7 @@
                 </div>
               </div>
             </div>
+</div>
 @endsection
 @section('js')
 <script>

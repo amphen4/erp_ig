@@ -1,5 +1,6 @@
 <?php $__env->startSection('title','Reportes | Administrador'); ?>
 <?php $__env->startSection('contenido'); ?>
+<div class="row">
 			<div class="col-md-6">
               <div class="x_panel">
                 <div class="x_title">
@@ -37,6 +38,7 @@
                 </div>
               </div>
             </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <script>

@@ -82,7 +82,7 @@
                     <a href="<?php echo e(url('adminuser/login')); ?>">Administrador</a>
                 </div>
                 <br>
-                <span class="label label-primary">v.0.7 Beta</span>
+                <span class="label label-primary">v.0.82 Beta</span>
 
             </div>
         </div>
