@@ -95,7 +95,8 @@ class VentasOtsController extends Controller
         //dd($request);
         $this->validate($request, ['medio_pago' => 'required|string',
                                    'comentario' => 'required|string',
-                                   'estado' => 'required|string'
+                                   'estado' => 'required|string',
+                                   'nro' => 'required'
                                   ]);
         switch($request->estado){
             case 'POR FACTURAR':
@@ -105,7 +106,7 @@ class VentasOtsController extends Controller
                 $ot->comentario = $request->comentario;
                 $ot->medio_pago = $request->medio_pago;
                 $ot->fecha = Carbon::now()->format('Y-m-d');
-                
+                $ot->nro = $request->nro;
                 $ot->cotizacion->save();
                 $ot->save();
                 $reporte = new Reporte();
@@ -126,7 +127,7 @@ class VentasOtsController extends Controller
                 $ot->comentario = $request->comentario;
                 $ot->medio_pago = $request->medio_pago;
                 $ot->fecha = Carbon::now()->format('Y-m-d');
-                
+                $ot->nro = $request->nro;
                 $ot->cotizacion->save();
                 $ot->save();
                 $reporte = new Reporte();

@@ -263,10 +263,10 @@ $('.flexdatalistcliente').flexdatalist({
 });
 $('.flexdatalistproductos').flexdatalist({
      minLength: 1,
-     searchIn: ['nombre','codigo'],
+     searchIn: ['nombre','codigo','marca_nombre','categoria_nombre'],
      data: '{{url("ventasuser/productos.json")}}',
      textProperty: '{nombre},  Precio Venta: ${precio_venta}',
-     visibleProperties: ["nombre","stock","precio_venta"],
+     visibleProperties: ["nombre","stock","marca_nombre","categoria_nombre"],
      searchByWord: true,
      valueProperty: '*',
      selectionRequired: true,

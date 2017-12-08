@@ -134,7 +134,7 @@
               </div>
           </div>
           <div class="form-group">  
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero Documento:</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">N° Orden de Compra:</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type='text' name="nro" value="{{$cotizacion->nro}}" class="form-control" />
               </div>
@@ -184,10 +184,10 @@
 
 $('.flexdatalistproductos').flexdatalist({
      minLength: 1,
-     searchIn: 'nombre',
+     searchIn: ['nombre','codigo','marca_nombre','categoria_nombre'],
      data: '{{url("ventasuser/productos.json")}}',
      textProperty: '{nombre},  Precio Venta: ${precio_venta}',
-     visibleProperties: ["nombre","stock","precio_venta"],
+     visibleProperties: ["nombre","stock","marca_nombre","categoria_nombre"],
      searchByWord: true,
      valueProperty: '*',
      selectionRequired: true,

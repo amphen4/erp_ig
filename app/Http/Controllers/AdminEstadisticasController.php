@@ -20,29 +20,36 @@ class AdminEstadisticasController extends Controller
     {
     	$vendedores =  Ventasuser::all();
     	setlocale(LC_ALL, 'Spanish_Chile');
-    	$data['totales'] = array();
+    	//$data['totales'] = array();
     	foreach($vendedores as $vendedor)
     	{
     		$data['nombres'][] = $vendedor->name;
     		$totales['meses'] = array();
-    		$totales['sumatoria'] = array();	
+    		$totales['sumatoria'] = array();
+    		$totales['nombre'] = array();
+
 			$fecha = Carbon::now();
 			//$totales['meses'][] =  $fecha->formatLocalized('%B');
 			array_unshift($totales['meses'], $fecha->formatLocalized('%B'));
 			$hoy = $fecha->toDateString();
 			$mes = $fecha->startOfMonth()->toDateString();
+			// ------ Obteniendo las ot durante el mes actual
 			$cotizaciones = $vendedor->cotizacion()->whereBetween('fecha',[$mes,$hoy])->get();
 			$sumaMes = 0;
 			foreach($cotizaciones as $cotizacion)
 			{
-				$estadoOt = $cotizacion->ot->otestado->nombre;
-				if($estadoOt == 'POR FACTURAR' || $estadoOt == 'FACTURADO' ){
-					$sumaMes+= $cotizacion->valor_total;
+				if($cotizacion->ot){ // por si la ot de una cotizacion fue eliminada
+					$estadoOt = $cotizacion->ot->otestado->nombre;
+					if($estadoOt == 'POR FACTURAR' || $estadoOt == 'FACTURADO' ){
+						$sumaMes+= $cotizacion->valor_total;
+					}
 				}
+					
 			}
 			//$totales['sumatoria'][] = $sumaMes;
 			array_unshift($totales['sumatoria'], $sumaMes);
 			$totales['nombre'][] = $vendedor->name;
+			// ----- para los 11 meses anteriores -----
 			for($i=0; $i < 11; $i++)
 			{
 				$fecha->subDay();
@@ -55,10 +62,13 @@ class AdminEstadisticasController extends Controller
 				$sumaMes = 0;
 				foreach($cotizaciones as $cotizacion)
 				{
-					$estadoOt = $cotizacion->ot->otestado->nombre;
-					if($estadoOt == 'POR FACTURAR' || $estadoOt == 'FACTURADO' ){
-						$sumaMes+= $cotizacion->valor_total;
+					if($cotizacion->ot){ // por si la ot de una cotizacion fue eliminada
+						$estadoOt = $cotizacion->ot->otestado->nombre;
+						if($estadoOt == 'POR FACTURAR' || $estadoOt == 'FACTURADO' ){
+							$sumaMes+= $cotizacion->valor_total;
+						}
 					}
+						
 				}
 				//$totales['sumatoria'][] = $sumaMes;
 				array_unshift($totales['sumatoria'], $sumaMes);

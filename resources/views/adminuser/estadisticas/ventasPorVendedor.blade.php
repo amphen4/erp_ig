@@ -194,7 +194,7 @@
 	echartLine.setOption({
 				title: {
 				  text: 'Ventas por Vendedor',
-				  subtext: 'Ventas concretadas en los últimos 12 Meses'
+				  subtext: 'Ventas en pesos, concretadas en los últimos 12 Meses'
 				},
 				tooltip: {
 				  trigger: 'axis'

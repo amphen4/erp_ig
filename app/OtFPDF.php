@@ -50,7 +50,7 @@ class OtFPDF extends FPDF
 		$this->Ln(8);
 		$this->Cell(290,10, 'ORDEN DE TRABAJO',0,0,'C');
 	    $this->Ln(8);
-		$this->Cell(290,10, 'N '.$ot->id,0,0,'C');// añadir el numero desde la ot
+		$this->Cell(290,10, 'N '.$ot->id,0,0,'C');// a単adir el numero desde la ot
 		$this->SetFont('Arial','B',11);
 		$this->SetTextColor(0,0,0);
 
@@ -98,7 +98,7 @@ class OtFPDF extends FPDF
 		$this->Write(1, $fecha);
 		//$this->Image('images/ot.png', 130, 30, 80 ); se saca por que se genera en el header
 		
-		$this->Image('images/b_back.png', 5, 250, 200 );
+		//$this->Image('images/b_back.png', 5, 250, 200 );
 		$this->Ln(20);
 		$this->SetFillColor(232,232,232);
 		$this->SetFont('Arial','B',10);
@@ -173,7 +173,7 @@ class OtFPDF extends FPDF
 		$this->SetFont('Arial','B',11);
 		$this->Write(1,'Observaciones: ');
 		$this->SetFont('Arial','',11);
-		$this->Write(1,$ot->comentario);
+		$this->Write(7,$ot->comentario);
 		//$this->Write(1,$diseno); colocar la data de observaciones ACA!
 		$modo="I"; 
 	    $nombre_archivo="Orden de Trabajo ".$ot->id." ".$ot->fecha.".pdf";  //el nombre colocarlo con parametro get por url igual para seleccionar y armar el reporte
@@ -207,7 +207,7 @@ class OtFPDF extends FPDF
 		$this->Ln(8);
 		$this->Cell(290,10, 'ORDEN DE TRABAJO',0,0,'C');
 	    $this->Ln(8);
-		$this->Cell(290,10, 'N '.$ot->id,0,0,'C');// añadir el numero desde la ot
+		$this->Cell(290,10, 'N '.$ot->id,0,0,'C');// a単adir el numero desde la ot
 		$this->SetFont('Arial','B',11);
 		$this->SetTextColor(0,0,0);
 
@@ -256,7 +256,7 @@ class OtFPDF extends FPDF
 		$this->Write(1, $fecha);
 		//$this->Image('images/ot.png', 130, 30, 80 ); se saca por que se genera en el header
 		
-		$this->Image('images/b_back.png', 5, 250, 200 );
+		//$this->Image('images/b_back.png', 5, 250, 200 );
 		$this->Ln(20);
 		$this->SetFillColor(232,232,232);
 		$this->SetFont('Arial','B',10);
@@ -331,7 +331,7 @@ class OtFPDF extends FPDF
 		$this->SetFont('Arial','B',11);
 		$this->Write(1,'Observaciones: ');
 		$this->SetFont('Arial','',11);
-		$this->Write(1,$ot->comentario);
+		$this->Write(7,$ot->comentario);
 		//$this->Write(1,$diseno); colocar la data de observaciones ACA!
 		$modo="F"; 
 	    $nombre_archivo="Orden de Trabajo ".$ot->id." ".Carbon::now()->format('Y-m-d H_i_s').".pdf";  //el nombre colocarlo con parametro get por url igual para seleccionar y armar el reporte

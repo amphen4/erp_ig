@@ -117,7 +117,7 @@ class VentasCotizacionesController extends Controller
             
         }
         
-
+        $wow->nro = $request->nro;
         $wow->valor_neto = $neto;
         $wow->valor_iva = $iva;
         $wow->valor_total = $total;
@@ -249,7 +249,7 @@ class VentasCotizacionesController extends Controller
             
         }
         
-
+        $wow->nro = $request->nro;
         $wow->valor_neto = $neto;
         $wow->valor_iva = $iva;
         $wow->valor_total = $total;

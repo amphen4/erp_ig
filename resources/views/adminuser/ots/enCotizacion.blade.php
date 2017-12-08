@@ -71,7 +71,7 @@
                       </div>
                     </div>
 	                  <div class="form-group">
-                      <label class="control-label col-md-3" for="last-name">N° de documento: 
+                      <label class="control-label col-md-3" for="last-name">N° Orden de Compra: 
                       </label>
                       <div class="col-md-7">
                         <input value="{{$ot->nro}}" type="text" id="last-name2" name="nro" required="required" class="form-control col-md-7 col-xs-12">

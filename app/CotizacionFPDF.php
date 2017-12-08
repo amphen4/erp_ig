@@ -34,7 +34,7 @@ class CotizacionFPDF extends FPDF
 		$this->Ln(8);
 		$this->Cell(290,10, 'COTIZACION',0,0,'C');
 	    $this->Ln(8);
-		$this->Cell(290,10, 'N '.$cotizacion->id,0,0,'C');// añadir el numero desde la ot
+		$this->Cell(290,10, 'N '.$cotizacion->id,0,0,'C');// a単adir el numero desde la ot
 		$this->SetFont('Arial','B',10);
 		$this->SetTextColor(0,0,0);
 
@@ -83,7 +83,7 @@ class CotizacionFPDF extends FPDF
 		$this->Write(1, $fecha);
 		//$this->Image('images/cotizacion.png', 130, 10, 70 );
 		$this->Image('images/data.png', 130, 60, 70 );
-		$this->Image('images/b_back.png', 5, 250, 200 );
+		//$this->Image('images/b_back.png', 5, 250, 200 );
 		$this->Ln(20);
 		$this->SetFillColor(232,232,232);
 		$this->SetFont('Arial','B',10);
@@ -156,7 +156,7 @@ class CotizacionFPDF extends FPDF
 		else $this->Write(1,'');
 		$this->Ln(13);
 		$this->Write(1,'Observaciones: ');
-		$this->Write(1,$cotizacion->descripcion);
+		$this->Write(7,$cotizacion->descripcion);
 		$modo="F"; 
 	    $nombre_archivo="Cotizacion ".$cotizacion->id." ".Carbon::now()->format('Y-m-d H_i_s').".pdf";
 	    $this->Output($nombre_archivo,$modo);
@@ -173,7 +173,7 @@ class CotizacionFPDF extends FPDF
 		$this->Ln(8);
 		$this->Cell(290,10, 'COTIZACION',0,0,'C');
 	    $this->Ln(8);
-		$this->Cell(290,10, 'N '.$cotizacion->id,0,0,'C');// añadir el numero desde la ot
+		$this->Cell(290,10, 'N '.$cotizacion->id,0,0,'C');// a単adir el numero desde la ot
 		$this->SetFont('Arial','B',8);
 		$this->SetTextColor(0,0,0);
 
@@ -222,7 +222,7 @@ class CotizacionFPDF extends FPDF
 		$this->Write(1, $fecha);
 		//$this->Image('images/cotizacion.png', 130, 10, 70 );
 		$this->Image('images/data.png', 130, 60, 70 );
-		$this->Image('images/b_back.png', 5, 250, 200 );
+		//$this->Image('images/b_back.png', 5, 250, 200 );
 		$this->Ln(20);
 		$this->SetFillColor(232,232,232);
 		$this->SetFont('Arial','B',10);
@@ -291,7 +291,7 @@ class CotizacionFPDF extends FPDF
 		else $this->Write(1,'');
 		$this->Ln(13);
 		$this->Write(1,'Observaciones: ');
-		$this->Write(1,$cotizacion->descripcion);
+		$this->Write(6,$cotizacion->descripcion);
 		$modo="I"; 
 	    $nombre_archivo="Cotizacion ".$cotizacion->id." ".Carbon::now()->format('Y-m-d H:m').".pdf";
 	    $this->Output($nombre_archivo,$modo);
