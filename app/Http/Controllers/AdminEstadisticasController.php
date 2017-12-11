@@ -82,4 +82,17 @@ class AdminEstadisticasController extends Controller
     	if($data) return view('adminuser.estadisticas.ventasPorVendedor',['data' => $data]);
     	else      return view('adminuser.estadisticas.ventasPorVendedor',[]);
     }
+    public function cotizacionesPorVendedor()
+    {
+
+    	$vendedores = Ventasuser::withCount('cotizacion')->get();
+    	foreach($vendedores as $vendedor)
+    	{
+    		$arreglo['nombre'] = $vendedor->name;
+    		$arreglo['valor'] = $vendedor->cotizacion_count;
+    		$data[] = $arreglo;
+    	}
+    	//dd($data);
+    	return view('adminuser.estadisticas.cotizacionesPie',['data' => $data]);
+    }
 }

@@ -1,16 +1,17 @@
 @extends('adminuser.layout.gentelella')
-@section('title','Ventas por Vendedor')
+@section('title','Cotizaciones por Vendedor')
 @section('contenido')
 <div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="col-md-9 col-sm-9 col-xs-9">
 	        <div class="x_panel">
 	          <div class="x_title">
-	            <h2>Estadisticas Ventas</h2>
+	            <h2>Grafico Pie</h2>
+	            
 	            <div class="clearfix"></div>
 	          </div>
 	          <div class="x_content">
 
-	            <div id="grafico1" style="height:400px;"></div>
+	            <div id="grafico" style="height:450px;"></div>
 
 	          </div>
 	        </div>
@@ -21,9 +22,8 @@
 <!-- ECharts -->
 <script src="{{ asset('templates/gentelella') }}/vendors/echarts/dist/echarts.min.js"></script>
 <script src="{{ asset('templates/gentelella') }}/vendors/echarts/map/js/world.js"></script>
-@if($data)
 <script>
-	var theme = {
+	  var theme = {
 				  color: [
 					  '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
 					  '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
@@ -191,33 +191,33 @@
 					  fontFamily: 'Arial, Verdana, sans-serif'
 				  }
 			  };
-	var echartLine = echarts.init(document.getElementById('grafico1'), theme);
+			  
+			  var echartPie = echarts.init(document.getElementById('grafico'), theme);
 
-	echartLine.setOption({
-				title: {
-				  text: 'Ventas por Vendedor',
-				  subtext: 'Ventas en pesos, concretadas en los últimos 12 Meses'
-				},
+			  echartPie.setOption({
 				tooltip: {
-				  trigger: 'axis'
+				  trigger: 'item',
+				  formatter: "{a} <br/>{b} : {c} ({d}%)"
 				},
 				legend: {
-				  x: 220,
-				  y: 40,
-				  data: [@foreach($data['nombres'] as $nombre)'{{$nombre}}',@endforeach]
+				  x: 'center',
+				  y: 'bottom',
+				  data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
 				},
 				toolbox: {
 				  show: true,
 				  feature: {
 					magicType: {
 					  show: true,
-					  title: {
-						line: 'Line',
-						bar: 'Bar',
-						stack: 'Stack',
-						tiled: 'Tiled'
-					  },
-					  type: ['line', 'bar', 'stack', 'tiled']
+					  type: ['pie', 'funnel'],
+					  option: {
+						funnel: {
+						  x: '25%',
+						  width: '50%',
+						  funnelAlign: 'left',
+						  max: 1548
+						}
+					  }
 					},
 					restore: {
 					  show: true,
@@ -230,28 +230,46 @@
 				  }
 				},
 				calculable: true,
-				xAxis: [{
-				  type: 'category',
-				  boundaryGap: false,
-				  data: [@foreach($data['totales'][0]['meses'] as $mes)'{{$mes}}',@endforeach]
-				}],
-				yAxis: [{
-				  type: 'value'
-				}],
-				series: [@foreach($data['totales'] as $vendedor){
-				  name: '{{$vendedor["nombre"][0]}}',
-				  type: 'line',
-				  smooth: true,
-				  itemStyle: {
-					normal: {
-					  areaStyle: {
-						type: 'default'
-					  }
-					}
-				  },
-				  data: [@foreach($vendedor['sumatoria'] as $total){{$total}},@endforeach]
-				},@endforeach ]
+				series: [{
+				  name: 'N° de Cotizaciones en Sistema',
+				  type: 'pie',
+				  radius: '55%',
+				  center: ['50%', '48%'],
+				  data: [@foreach($data as $vendedor){
+					value: {{$vendedor['valor']}},
+					name: '{{$vendedor['nombre']}}'
+				  },@endforeach
+				  ]
+				}]
 			  });
+
+			  var dataStyle = {
+				normal: {
+				  label: {
+					show: false
+				  },
+				  labelLine: {
+					show: false
+				  }
+				}
+			  };
+
+			  var placeHolderStyle = {
+				normal: {
+				  color: 'rgba(0,0,0,0)',
+				  label: {
+					show: false
+				  },
+				  labelLine: {
+					show: false
+				  }
+				},
+				emphasis: {
+				  color: 'rgba(0,0,0,0)'
+				}
+			  };
+
+			
+
 </script>
-@endif
 @endsection

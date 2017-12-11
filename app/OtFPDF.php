@@ -122,9 +122,10 @@ class OtFPDF extends FPDF
 		foreach($ot->cotizacion->producto as $producto){
 			$this->Cell(15,6,$producto->id,1,0,'C');
 			$this->Cell(13,6,$producto->pivot->cantidad,1,0,'C');
-			if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
-			else $this->Cell(74,6,$producto->nombre,1,0,'C');
-			
+			//if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
+			//else $this->Cell(74,6,$producto->nombre,1,0,'C');
+			if(strlen($producto->nombre) > 80) $this->CellFitScale(74,6,str_limit($producto->nombre, 80),1,0,'C');
+			else $this->CellFitScale(74,6,$producto->nombre,1,0,'C');
 			$this->Cell(35,6,'$ '.number_format($producto->precio_venta,0,",","."),1,0,'C');
 			if($hayDescuento){
 				if($producto->pivot->descuento) $this->Cell(25,6,$producto->pivot->descuento.'%',1,0,'C');
@@ -133,8 +134,15 @@ class OtFPDF extends FPDF
 			if($producto->pivot->descuento) $this->Cell(30,6,'$ '.number_format($producto->precio_venta*(1-($producto->pivot->descuento/100))*$producto->pivot->cantidad,0,",","."),1,0,'C');
 			else $this->Cell(30,6,'$ '.number_format($producto->precio_venta*$producto->pivot->cantidad,0,",","."),1,0,'C');
 			
-		
 			$this->Ln(6);
+
+			if(strlen($producto->nombre) > 80)
+			{
+				
+				//$this->Cell(15,6,'Nombre',1,0,'C');
+				$this->CellFitScale(167,6,substr($producto->nombre,80),1,0,'C');
+				$this->Ln(6);
+			}
 		}
 		// WHILE DEL GUARY
 		$this->SetFont('Arial','',10);
@@ -150,7 +158,7 @@ class OtFPDF extends FPDF
     	$this->Write(1,'MONTO TOTAL FINAL: $ '.number_format($ot->cotizacion->valor_total,0,",","."));
 
 		$this->SetFont('Arial','B',11);
-		$this->Ln(15);
+		$this->Ln(10);
 		$this->Cell(50,6,'Vendedor: ',1,0,'C',1);
 		$this->SetFont('Arial','',11);
 		$this->Cell(50,6,$ot->cotizacion->ventasuser->name,1,0,'C');
@@ -169,11 +177,11 @@ class OtFPDF extends FPDF
 		$this->Cell(50,6,'Fecha de Entrega: ',1,0,'C',1);
 		$this->SetFont('Arial','',11);
 		$this->Cell(50,6,$ot->fecha_entrega,1,0,'C');//Trae desde la base la fecha de entrega
-		$this->Ln(19);
+		$this->Ln(10);
 		$this->SetFont('Arial','B',11);
 		$this->Write(1,'Observaciones: ');
 		$this->SetFont('Arial','',11);
-		$this->Write(7,$ot->comentario);
+		$this->Write(1,$ot->comentario);
 		//$this->Write(1,$diseno); colocar la data de observaciones ACA!
 		$modo="I"; 
 	    $nombre_archivo="Orden de Trabajo ".$ot->id." ".$ot->fecha.".pdf";  //el nombre colocarlo con parametro get por url igual para seleccionar y armar el reporte
@@ -280,8 +288,10 @@ class OtFPDF extends FPDF
 		foreach($ot->cotizacion->producto as $producto){
 			$this->Cell(15,6,$producto->id,1,0,'C');
 			$this->Cell(13,6,$producto->pivot->cantidad,1,0,'C');
-			if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
-			else $this->Cell(74,6,$producto->nombre,1,0,'C');
+			//if(strlen($producto->nombre)>35) $this->Cell(74,6,str_limit($producto->nombre, 35),1,0,'C');
+			//else $this->Cell(74,6,$producto->nombre,1,0,'C');
+			if(strlen($producto->nombre) > 80) $this->CellFitScale(74,6,str_limit($producto->nombre, 80),1,0,'C');
+			else $this->CellFitScale(74,6,$producto->nombre,1,0,'C');
 			
 			$this->Cell(35,6,'$ '.number_format($producto->precio_venta,0,",","."),1,0,'C');
 			if($hayDescuento){
@@ -291,8 +301,15 @@ class OtFPDF extends FPDF
 			if($producto->pivot->descuento) $this->Cell(30,6,'$ '.number_format($producto->precio_venta*(1-($producto->pivot->descuento/100))*$producto->pivot->cantidad,0,",","."),1,0,'C');
 			else $this->Cell(30,6,'$ '.number_format($producto->precio_venta*$producto->pivot->cantidad,0,",","."),1,0,'C');
 			
-		
 			$this->Ln(6);
+
+			if(strlen($producto->nombre) > 80)
+			{
+				
+				//$this->Cell(15,6,'Nombre',1,0,'C');
+				$this->CellFitScale(167,6,substr($producto->nombre,80),1,0,'C');
+				$this->Ln(6);
+			}
 		}
 		// WHILE DEL GUARY
 		$this->SetFont('Arial','',10);
@@ -308,7 +325,7 @@ class OtFPDF extends FPDF
     	$this->Write(1,'MONTO TOTAL FINAL: $ '.number_format($ot->cotizacion->valor_total,0,",","."));
 
 		$this->SetFont('Arial','B',11);
-		$this->Ln(15);
+		$this->Ln(10);
 		$this->Cell(50,6,'Vendedor: ',1,0,'C',1);
 		$this->SetFont('Arial','',11);
 		$this->Cell(50,6,$ot->cotizacion->ventasuser->name,1,0,'C');
@@ -327,15 +344,102 @@ class OtFPDF extends FPDF
 		$this->Cell(50,6,'Fecha de Entrega: ',1,0,'C',1);
 		$this->SetFont('Arial','',11);
 		$this->Cell(50,6,$ot->fecha_entrega,1,0,'C');//Trae desde la base la fecha de entrega
-		$this->Ln(19);
+		$this->Ln(10);
 		$this->SetFont('Arial','B',11);
 		$this->Write(1,'Observaciones: ');
 		$this->SetFont('Arial','',11);
-		$this->Write(7,$ot->comentario);
+		$this->Write(1,$ot->comentario);
 		//$this->Write(1,$diseno); colocar la data de observaciones ACA!
 		$modo="F"; 
 	    $nombre_archivo="Orden de Trabajo ".$ot->id." ".Carbon::now()->format('Y-m-d H_i_s').".pdf";  //el nombre colocarlo con parametro get por url igual para seleccionar y armar el reporte
 	    $this->Output($nombre_archivo,$modo);
 	    return $nombre_archivo; 
 	}
+	//Cell with horizontal scaling if text is too wide
+    function CellFit($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='', $scale=false, $force=true)
+    {
+        //Get string width
+        $str_width=$this->GetStringWidth($txt);
+
+        //Calculate ratio to fit cell
+        if($w==0)
+            $w = $this->w-$this->rMargin-$this->x;
+        $ratio = ($w-$this->cMargin*2)/$str_width;
+
+        $fit = ($ratio < 1 || ($ratio > 1 && $force));
+        if ($fit)
+        {
+            if ($scale)
+            {
+                //Calculate horizontal scaling
+                $horiz_scale=$ratio*100.0;
+                //Set horizontal scaling
+                $this->_out(sprintf('BT %.2F Tz ET',$horiz_scale));
+            }
+            else
+            {
+                //Calculate character spacing in points
+                $char_space=($w-$this->cMargin*2-$str_width)/max($this->MBGetStringLength($txt)-1,1)*$this->k;
+                //Set character spacing
+                $this->_out(sprintf('BT %.2F Tc ET',$char_space));
+            }
+            //Override user alignment (since text will fill up cell)
+            $align='';
+        }
+
+        //Pass on to Cell method
+        $this->Cell($w,$h,$txt,$border,$ln,$align,$fill,$link);
+
+        //Reset character spacing/horizontal scaling
+        if ($fit)
+            $this->_out('BT '.($scale ? '100 Tz' : '0 Tc').' ET');
+    }
+
+    //Cell with horizontal scaling only if necessary
+    function CellFitScale($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+    {
+        $this->CellFit($w,$h,$txt,$border,$ln,$align,$fill,$link,true,false);
+    }
+
+    //Cell with horizontal scaling always
+    function CellFitScaleForce($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+    {
+        $this->CellFit($w,$h,$txt,$border,$ln,$align,$fill,$link,true,true);
+    }
+
+    //Cell with character spacing only if necessary
+    function CellFitSpace($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+    {
+        $this->CellFit($w,$h,$txt,$border,$ln,$align,$fill,$link,false,false);
+    }
+
+    //Cell with character spacing always
+    function CellFitSpaceForce($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+    {
+        //Same as calling CellFit directly
+        $this->CellFit($w,$h,$txt,$border,$ln,$align,$fill,$link,false,true);
+    }
+
+    //Patch to also work with CJK double-byte text
+    function MBGetStringLength($s)
+    {
+        if($this->CurrentFont['type']=='Type0')
+        {
+            $len = 0;
+            $nbbytes = strlen($s);
+            for ($i = 0; $i < $nbbytes; $i++)
+            {
+                if (ord($s[$i])<128)
+                    $len++;
+                else
+                {
+                    $len++;
+                    $i++;
+                }
+            }
+            return $len;
+        }
+        else
+            return strlen($s);
+    }
 }

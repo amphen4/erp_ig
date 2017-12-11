@@ -1,5 +1,6 @@
 <?php $__env->startSection('title','Ventas por Vendedor'); ?>
 <?php $__env->startSection('contenido'); ?>
+<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 	        <div class="x_panel">
 	          <div class="x_title">
@@ -13,6 +14,7 @@
 	          </div>
 	        </div>
 	    </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <!-- ECharts -->
@@ -193,7 +195,7 @@
 	echartLine.setOption({
 				title: {
 				  text: 'Ventas por Vendedor',
-				  subtext: 'Ventas concretadas en los últimos 12 Meses'
+				  subtext: 'Ventas en pesos, concretadas en los últimos 12 Meses'
 				},
 				tooltip: {
 				  trigger: 'axis'

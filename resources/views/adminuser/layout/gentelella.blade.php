@@ -99,7 +99,7 @@
                     
                       <ul class="nav child_menu">
                         <li><a href="{{ url('/adminuser/estadisticas/ventas_por_vendedor') }}"></i> Ventas por Vendedor </a></li>
-                      
+                        <li><a href="{{ url('/adminuser/estadisticas/cotizaciones_por_vendedor') }}"></i> Cotizaciones por Vendedor </a></li>
                       </ul>
                   </li>
                 </ul>

@@ -159,6 +159,7 @@ Route::group(['prefix' => 'adminuser'], function () {
   Route::get('/descargarReporte/{filename}','AdminAjaxController@descargarReporte');
 
   Route::get('/estadisticas/ventas_por_vendedor','AdminEstadisticasController@ventasPorVendedor');
+  Route::get('/estadisticas/cotizaciones_por_vendedor','AdminEstadisticasController@cotizacionesPorVendedor');
 });
 
 Route::group(['prefix' => 'root'], function () {
